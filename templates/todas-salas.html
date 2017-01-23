@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Todas as salas
+{% endblock %}
+
+{% block body %}
+    <a href="/">Índice</a> <br><br>
+
+    {% for sala in todas_salas %}
+        {{ sala.num }} - <a href="/{{ sala.num }}">{{ sala.titulo }}</a> <br>
+    {% endfor %}
+{% endblock %}
