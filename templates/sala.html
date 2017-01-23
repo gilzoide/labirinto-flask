@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Sala {{ sala.num }}
+{% endblock %}
+
+{% block body %}
+    <h2>{{ sala.titulo }}</h2>
+
+    {{ sala.dica }} <br>
+
+    {% for P in sala.portas %}
+        <a href="/{{ sala.num }}/{{ P.nome }}">{{ P.nome }}</a> <br>
+    {% endfor %} <br>
+    <a href="/0" id="perdeu">Desistir =/</a>
+{% endblock %}

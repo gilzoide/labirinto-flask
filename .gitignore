@@ -1,0 +1,16 @@
+# Backups de texto
+*~
+*.swp
+
+# Virtualenv
+venv/
+
+# Arquivos do pycharm
+.idea/
+
+# Cache do python
+*.pyc
+__pycache__/
+
+# Banco de dados
+*.db
