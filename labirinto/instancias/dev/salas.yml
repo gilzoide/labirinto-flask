@@ -8,7 +8,7 @@ portas:
 dica: Bom dia, senhor(a). Você conhece a lenda do labirinto?
 portas:
   - nome: sim
-    proxima: 4
+    proxima: 3
   - nome: não
     proxima: 2
 ---

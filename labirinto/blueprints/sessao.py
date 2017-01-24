@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from flask import Blueprint, request, redirect, render_template, jsonify
-from db import db
+from flask import Blueprint, request, redirect, render_template, jsonify, abort
+
+from labirinto.db import db
 
 
 sessao_blueprint = Blueprint('sessao', __name__)
@@ -19,12 +20,14 @@ def sessao():
         url = request.headers['Referer'][len(origin):]
         salva(nome, url)
         return render_template('salvou-sessao.html', nome=nome)
-    else:
+    elif data.get('carregar'):
         url = carrega(nome)
         if url:
             return redirect(url)
         else:
-            return render_template('sessao-inexistente.html')
+            return render_template('sessao-inexistente.html'), 404
+    else:
+        abort(400)
 
 
 def salva(nome, url):

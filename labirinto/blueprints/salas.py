@@ -2,7 +2,7 @@
 
 from flask import Blueprint, render_template, redirect
 
-from sala import get_salas
+from labirinto.sala import get_salas
 
 
 salas_blueprint = Blueprint('salas', __name__)

@@ -12,6 +12,7 @@ class Sala:
         self.portas = portas
         self.titulo = titulo or "Sala {}".format(num)
 
+    # número atual da sala, crescente, começando em 0 (ele dá ++ antes de criar)
     num = -1
 
     @classmethod
@@ -24,7 +25,9 @@ class Sala:
 
     def porta_proxima(self, nome):
         """Acha qual o proximo passo a partir da porta"""
-        return filter(lambda p: p['nome'] == nome, self.portas)[0]['proxima']
+        # Usa `for` retornando o primeiro elemento pra funcionar tanto no python 2 quanto 3
+        for porta in filter(lambda p: p['nome'] == nome, self.portas):
+            return porta['proxima']
 
 
 def get_salas():

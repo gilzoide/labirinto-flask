@@ -1,3 +1,5 @@
 flask
 Flask-Dataset
 PyYAML
+nose
+mock
