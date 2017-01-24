@@ -20,3 +20,8 @@ def entra_porta(num, porta):
     sala = SALAS[num]
     proxima = sala.porta_proxima(porta)
     return redirect('/{}'.format(proxima))
+
+
+@salas_blueprint.route('/todas-salas')
+def todas_salas():
+    return render_template('todas-salas.html', todas_salas=SALAS)

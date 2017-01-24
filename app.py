@@ -18,7 +18,6 @@ app.config['SECRET_KEY'] = "minha eguinha pocoto"
 
 @app.route('/')
 def index():
-    session['pagina'] = '/'
     return render_template('index.html')
 
 

@@ -20,7 +20,7 @@ class Sala:
         return cls(cls.num, dica, portas, titulo)
 
     def __repr__(self):
-        return 'Sala({0.num}, {0.dica:r}, {0.portas:r})'.format(self)
+        return 'Sala({0.num}, {0.dica!r}, {0.portas!r}, {0.titulo!r})'.format(self)
 
     def porta_proxima(self, nome):
         """Acha qual o proximo passo a partir da porta"""

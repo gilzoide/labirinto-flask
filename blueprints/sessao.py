@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Blueprint, request, redirect
+from flask import Blueprint, request, redirect, render_template, jsonify
 from db import db
 
 
@@ -11,20 +11,32 @@ sessao_blueprint = Blueprint('sessao', __name__)
 def sessao():
     data = request.form.to_dict()
     nome = data.get('nome')
+    if not nome:
+        return redirect('/')
     if data.get('salvar'):
-        salva(nome, request.url_root)
+        # descobre de qual sala veio através da requisição HTTP
+        origin = request.headers['Origin']
+        url = request.headers['Referer'][len(origin):]
+        salva(nome, url)
+        return render_template('salvou-sessao.html', nome=nome)
     else:
         url = carrega(nome)
-        return redirect(url)
-    return redirect('/')
+        if url:
+            return redirect(url)
+        else:
+            return render_template('sessao-inexistente.html')
 
 
 def salva(nome, url):
-    print nome, url
-    db['sessoes'].insert({'nome': nome, 'url': url})
+    db['sessoes'].upsert({'nome': nome, 'url': url}, ['nome'])
 
 
 def carrega(nome):
     sess = db['sessoes'].find_one(nome=nome)
-    print sess['url']
-    return sess['url']
+    return sess and sess['url']
+
+
+@sessao_blueprint.route('/todas-sessoes')
+def todas_sessoes():
+    sessoes = db['sessoes'].all()
+    return jsonify(list(sessoes))
