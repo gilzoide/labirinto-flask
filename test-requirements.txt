@@ -1,0 +1,4 @@
+# Pacotes para teste
+nose
+mock
+

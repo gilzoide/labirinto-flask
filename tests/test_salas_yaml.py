@@ -1,54 +1,57 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from mock import patch
 import yaml
+try:
+    import mock
+except ImportError:
+    from unittest import mock
 
-from labirinto.sala import Sala, get_salas
+from labirinto.sala import *
 
 
-salas_yaml = r"""
----
-titulo: FIM DE JOGO
-dica: Game Over, seu otario!
-portas:
-  - nome: Inicio
-    proxima: ''
----
-dica: Bom dia, senhor(a). Você conhece a lenda do labirinto?
-portas:
-  - nome: sim
-    proxima: 3
-  - nome: nao
-    proxima: 2
----
-dica: Era uma vez... cansei de história
-portas:
-  - nome: Tá na hora do pau
-    proxima: 4
-  - nome: Por favor, mais história
-    proxima: 3
----
-dica: Um frango xadrez, que na janta me satisfez. Tá satisfeito também?
-portas:
-  - nome: sim, sim, digo bora
-    proxima: 4
----
-dica: Ainda não há mais portas. Passar bem
-portas: []
-"""
+lista_salas = yaml.load(r"""
+- titulo: FIM DE JOGO
+  dica: Game Over, seu otario!
+  portas:
+    - nome: Inicio
+      proxima: ''
+
+- dica: Bom dia, senhor(a). Você conhece a lenda do labirinto?
+  portas:
+    - nome: sim
+      proxima: 3
+    - nome: nao
+      proxima: 2
+
+- dica: Era uma vez... cansei de história
+  portas:
+    - nome: Tá na hora do pau
+      proxima: 4
+    - nome: Por favor, mais história
+      proxima: 3
+
+- dica: Um frango xadrez, que na janta me satisfez. Tá satisfeito também?
+  portas:
+    - nome: sim, sim, digo bora
+      proxima: 4
+
+- dica: Ainda não há mais portas. Passar bem
+  portas: []
+""")
 
 
 class SalasTest(unittest.TestCase):
     """Testa a leitura de salas do arquivo YAML e seu conteúdo"""
 
-    @patch('yaml.load_all', return_value=yaml.load_all(salas_yaml))
-    def test_conteudo_yaml(self, mock_load_all):
-        # número de salas
-        self.assertEqual(Sala.num, -1)
+    @mock.patch('labirinto.sala.yaml.load', autospec=True)
+    def test_conteudo_yaml(self, mock_load):
+        mock_load.return_value = lista_salas
+        # número das salas
+        self.assertFalse(mock_load.called)
         salas = get_salas()
-        mock_load_all.assert_called_once()
-        self.assertEqual(Sala.num, len(salas) - 1)
+        self.assertEqual(mock_load.call_count, 1)
+        self.assertSequenceEqual(map(lambda s: s.num, salas), range(len(salas)))
 
         # um pouco de conteúdo
         self.assertEqual(len(salas), 5)

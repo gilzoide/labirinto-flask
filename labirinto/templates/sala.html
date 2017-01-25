@@ -11,7 +11,7 @@
     {{ sala.dica }} <br>
 
     {% for P in sala.portas %}
-        <a href="/{{ sala.num }}/{{ P.nome }}">{{ P.nome }}</a> <br>
+        <a href='/{{ sala.num }}/{{ P.nome|urlencode }}'>{{ P.nome }}</a> <br>
     {% endfor %} <br>
     <a href="/0" id="perdeu">Desistir =/</a>
 {% endblock %}

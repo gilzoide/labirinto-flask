@@ -1,5 +1,4 @@
+# Pacotes para execução
 flask
 Flask-Dataset
 PyYAML
-nose
-mock

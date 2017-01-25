@@ -12,14 +12,6 @@ class Sala:
         self.portas = portas
         self.titulo = titulo or "Sala {}".format(num)
 
-    # número atual da sala, crescente, começando em 0 (ele dá ++ antes de criar)
-    num = -1
-
-    @classmethod
-    def cria_sala(cls, dica, portas, titulo=None):
-        cls.num += 1
-        return cls(cls.num, dica, portas, titulo)
-
     def __repr__(self):
         return 'Sala({0.num}, {0.dica!r}, {0.portas!r}, {0.titulo!r})'.format(self)
 
@@ -33,6 +25,4 @@ class Sala:
 def get_salas():
     """Le o documento de salas e retorna a lista das salas existentes"""
     with open('salas.yml', 'r') as arq:
-        docs = yaml.load_all(arq)
-        salas = [Sala.cria_sala(**sala) for sala in docs]
-        return salas
+        return [Sala(num=i, **sala) for i, sala in enumerate(yaml.load(arq))]

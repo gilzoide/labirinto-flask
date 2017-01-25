@@ -1,30 +1,62 @@
----
-titulo: FIM DE JOGO
-dica: Game Over, seu otario!
-portas:
-  - nome: Inicio
-    proxima: '' # volta pro começo =]
----
-dica: Bom dia, senhor(a). Você conhece a lenda do labirinto?
-portas:
-  - nome: sim
-    proxima: 4
-  - nome: não
-    proxima: 2
----
-titulo: Uma lenda que surge
-dica: Era uma vez... cansei de história
-portas:
-  - nome: Tá na hora do pau
-    proxima: 4
-  - nome: Por favor, mais história
-    proxima: 3
----
-titulo: Ta bom, mais história
-dica: Um frango xadrez, que na janta me satisfez. Tá satisfeito também?
-portas:
-  - nome: sim, sim, digo bora
-    proxima: 4
----
-dica: Ainda não há mais portas. Passar bem
-portas: []
+- titulo: FIM DE JOGO
+  dica: Game Over, seu otário!
+  portas:
+    - nome: Inicio
+      proxima: '' # volta pro começo =]
+
+- dica: Bom dia, senhor(a). Você conhece a lenda do labirinto?
+  portas:
+    - nome: sim
+      proxima: &FIM 8 # pula lá pro FIM história
+    - nome: não
+      proxima: 2
+
+# COMEÇA história
+- titulo: Uma lenda que surge
+  dica: Era uma vez... cansei de história
+  portas:
+    - nome: Tá na hora do pau
+      proxima: *FIM
+    - nome: Por favor, mais história
+      proxima: 3
+
+- titulo: Ta bom, mais história
+  dica: Um frango xadrez, que na janta me satisfez. Tá satisfeito também?
+  portas:
+    - nome: sim, sim, digo bora
+      proxima: *FIM
+    - nome: ainda não!
+      proxima: 4
+
+- titulo: Me acompanhe
+  dica: Acompanha purê de batata e arroz, nada melhor.
+  portas:
+    - nome: cansei
+      proxima: *FIM
+    - nome: "ja cabou, so?"
+      proxima: 5
+
+- titulo: Inda não, paciente você, né...
+  dica: Um bife a elefante, que foi fondo, foi fondo...
+  portas:
+    - nome: affs, vambora
+      proxima: *FIM
+    - nome: continua
+      proxima: 6
+
+- titulo: Agora já era
+  dica: E iu!
+  portas:
+    - nome: '#partiu'
+      proxima: *FIM
+    - nome: isso lá é história?
+      proxima: 7
+
+- dica: E faz diferença? Começa logo essa jornada, rapá!
+  portas:
+    - nome: goto jornada;
+      proxima: *FIM
+
+# FIM história
+- dica: Ainda não há mais portas. Passar bem
+  portas: []
