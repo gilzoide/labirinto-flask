@@ -1,7 +1,15 @@
-<form method="post" action="/sessao" id="sessao_form">
-    <strong>Sessão</strong>
-    <input name="nome" id="sessao_nome">
-    <input type="submit" name="salvar" id="salva_sessao" value="Salvar">
-    <input type="submit" name="carregar" id="carrega_sessao" value="Carregar">
-</form>
-<hr>
+<div>
+    <form method="post" action="/sessao" id="sessao_form">
+        <strong>Sessão</strong>
+        <input name="nome" id="sessao_nome">
+        <input type="submit" name="salvar" id="salva_sessao" value="Salvar">
+        <input type="submit" name="carregar" id="carrega_sessao" value="Carregar">
+    </form>
+    {% if current_user.is_authenticated %}
+        <label>{{ current_user.email }}</label>
+        <a href="{{ url_for_security('logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url_for_security('login') }}">Login</a>
+    {% endif %}
+    <hr>
+</div>

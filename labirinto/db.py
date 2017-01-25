@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from flask_dataset import Dataset
+from flask_mongoengine import MongoEngine
+from mongoengine.queryset import DoesNotExist, MultipleObjectsReturned, QuerySet
 
-db = Dataset()
+
+db = MongoEngine()

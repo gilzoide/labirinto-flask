@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from labirinto.app import create_app
+from labirinto.modelos import Sessao
 
 import unittest
 import json
@@ -11,6 +12,9 @@ class LabirintoTest(unittest.TestCase):
 
     def setUp(self):
         self.app = create_app('teste').test_client()
+
+    def tearDown(self):
+        Sessao.drop_collection()
 
     def get_todas_sessoes(self):
         """Pega o resultado de um GET em /todas-sessoes e parseia o JSON"""

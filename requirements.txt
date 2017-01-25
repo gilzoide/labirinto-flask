@@ -1,4 +1,7 @@
 # Pacotes para execução
 flask
-Flask-Dataset
+flask-mongoengine
 PyYAML
+Flask-Security
+Flask-Bootstrap
+Flask-Admin

@@ -1,7 +1,7 @@
 - titulo: FIM DE JOGO
   dica: Game Over, seu otário!
   portas:
-    - nome: Inicio
+    - nome: Início
       proxima: '' # volta pro começo =]
 
 - dica: Bom dia, senhor(a). Você conhece a lenda do labirinto?

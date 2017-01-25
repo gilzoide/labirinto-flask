@@ -63,3 +63,7 @@ class SalasTest(unittest.TestCase):
         self.assertEqual(salas[1].porta_proxima('sim'), 3)
         self.assertEqual(salas[1].porta_proxima('nao'), 2)
         self.assertIsNone(salas[1].porta_proxima('nao existe'))
+
+        inicio = salas[0].porta_proxima('Inicio')
+        self.assertEqual(inicio, '')
+        self.assertIsNotNone(inicio)

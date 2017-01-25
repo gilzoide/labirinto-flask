@@ -2,13 +2,14 @@
 
 from flask import Blueprint, request, redirect, render_template, jsonify, abort
 
-from labirinto.db import db
+from labirinto.modelos import Sessao
+from labirinto.db import DoesNotExist, MultipleObjectsReturned
 
 
-sessao_blueprint = Blueprint('sessao', __name__)
+sessoes_blueprint = Blueprint('sessoes', __name__)
 
 
-@sessao_blueprint.route('/sessao', methods=['POST'])
+@sessoes_blueprint.route('/sessao', methods=['POST'])
 def sessao():
     data = request.form.to_dict()
     nome = data.get('nome')
@@ -31,15 +32,18 @@ def sessao():
 
 
 def salva(nome, url):
-    db['sessoes'].upsert({'nome': nome, 'url': url}, ['nome'])
+    Sessao.objects.upsert_one(nome=nome, url=url)
 
 
 def carrega(nome):
-    sess = db['sessoes'].find_one(nome=nome)
-    return sess and sess['url']
+    try:
+        sess = Sessao.objects.get(nome=nome)
+        return sess.url
+    except DoesNotExist:
+        return None
 
 
-@sessao_blueprint.route('/todas-sessoes')
+@sessoes_blueprint.route('/todas-sessoes')
 def todas_sessoes():
-    sessoes = db['sessoes'].all()
+    sessoes = Sessao.objects.all()
     return jsonify(list(sessoes))
