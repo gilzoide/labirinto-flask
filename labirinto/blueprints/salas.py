@@ -7,7 +7,7 @@ from labirinto.sala import get_salas
 from urllib import unquote
 
 
-salas_blueprint = Blueprint('salas', __name__)
+salas_blueprint = Blueprint('salas_blueprint', __name__)
 SALAS = get_salas()
 
 

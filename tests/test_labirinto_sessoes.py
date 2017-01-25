@@ -7,11 +7,13 @@ import unittest
 import json
 
 
+test_app = create_app('teste').test_client()
+
 class LabirintoTest(unittest.TestCase):
     """Testa uns trem loko aí do flask"""
 
     def setUp(self):
-        self.app = create_app('teste').test_client()
+        self.app = test_app
 
     def tearDown(self):
         Sessao.drop_collection()

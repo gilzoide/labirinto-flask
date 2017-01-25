@@ -8,7 +8,7 @@ from flask_admin import Admin
 from labirinto.modelos import Sessao, Usuario, Grupo
 
 
-admin = Admin(name=u'Sessões', template_mode='bootstrap3',
+admin = Admin(template_mode='bootstrap3',
               base_template='admin_base.html')
 
 
@@ -30,6 +30,6 @@ class SafeModelView(ModelView):
 
 def configura(app):
     admin.init_app(app)
-    admin.add_view(SafeModelView(Sessao))
+    admin.add_view(SafeModelView(Sessao, name='sessao_admin'))
     admin.add_view(SafeModelView(Usuario, category='contas'))
     admin.add_view(SafeModelView(Grupo, category='contas'))

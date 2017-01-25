@@ -6,7 +6,7 @@ from labirinto.modelos import Sessao
 from labirinto.db import DoesNotExist, MultipleObjectsReturned
 
 
-sessoes_blueprint = Blueprint('sessoes', __name__)
+sessoes_blueprint = Blueprint('sessoes_blueprint', __name__)
 
 
 @sessoes_blueprint.route('/sessao', methods=['POST'])
@@ -32,7 +32,7 @@ def sessao():
 
 
 def salva(nome, url):
-    Sessao.objects.upsert_one(nome=nome, url=url)
+    Sessao.objects.filter(nome=nome).upsert_one(nome=nome, url=url)
 
 
 def carrega(nome):
