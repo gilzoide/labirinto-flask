@@ -3,7 +3,6 @@
 from flask import *
 from flask_security import Security, MongoEngineUserDatastore
 from flask_bootstrap import Bootstrap
-from flask_admin import Admin
 
 from blueprints.salas import salas_blueprint
 from blueprints.sessoes import sessoes_blueprint

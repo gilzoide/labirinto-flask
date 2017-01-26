@@ -17,7 +17,7 @@ def visita_sala(num):
     return render_template('sala.html', sala=sala)
 
 
-@salas_blueprint.route('/<int:num>/<porta>')
+@salas_blueprint.route('/<int:num>/<path:porta>')
 def entra_porta(num, porta):
     porta = unquote(porta)
     sala = SALAS[num]

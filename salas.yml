@@ -33,7 +33,7 @@
   portas:
     - nome: cansei
       proxima: *FIM
-    - nome: "ja cabou, so?"
+    - nome: ja cabou, sô?
       proxima: 5
 
 - titulo: Inda não, paciente você, né...
