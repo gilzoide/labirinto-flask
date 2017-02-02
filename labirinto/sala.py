@@ -10,7 +10,7 @@ class Sala:
         self.num = num
         self.dica = dica
         self.portas = portas
-        self.titulo = titulo or "Sala {}".format(num)
+        self.titulo = titulo or "Sala {0}".format(num)
 
     def __repr__(self):
         return 'Sala({0.num}, {0.dica!r}, {0.portas!r}, {0.titulo!r})'.format(self)
