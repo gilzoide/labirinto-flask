@@ -10,10 +10,10 @@ python:
 
 cache: pip
 
-addons:
-  apt:
-    packages:
-    - mongodb
+# addons:
+  # apt:
+    # packages:
+    # - mongodb
 
 install:
 - 'pip install -r requirements.txt'
