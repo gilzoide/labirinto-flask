@@ -14,3 +14,6 @@ __pycache__/
 
 # Banco de dados
 *.db
+
+# Teste de coverage
+.coverage

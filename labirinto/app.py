@@ -14,7 +14,7 @@ import admin
 from os import path
 
 
-def create_app(modo='development'):
+def create_app(modo='dev'):
     instance_path = path.join(path.abspath(path.dirname(__file__)), 'instancias', modo)
     # App e blueprints
     app = Flask('labirinto', instance_path=instance_path, instance_relative_config=True)
