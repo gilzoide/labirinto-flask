@@ -1,9 +1,0 @@
-labirinto:
-  build: .
-  ports:
-    - "5000:5000"
-  links:
-    - db
-
-db:
-  image: mongo

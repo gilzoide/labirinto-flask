@@ -1,5 +1,7 @@
 #!/bin/sh
 
-python run.py docker
+mongod --dbpath /db &
+
+python run.py
 
 exit
