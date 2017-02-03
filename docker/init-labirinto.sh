@@ -1,5 +1,5 @@
 #!/bin/sh
 
-python run.py
+python run.py docker
 
 exit
