@@ -17,3 +17,4 @@ __pycache__/
 
 # Teste de coverage
 .coverage
+cover/
