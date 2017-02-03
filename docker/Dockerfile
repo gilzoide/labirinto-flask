@@ -17,7 +17,7 @@ ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 
-# Caminho do mongão
+# Mongão
 RUN mkdir -p /db
 
 # Porta tcp dos broder
@@ -32,6 +32,10 @@ RUN pip install -r requirements.txt
 RUN mkdir -p /etc/my_init.d
 ADD init-labirinto.sh /etc/my_init.d/
 RUN chmod +x /etc/my_init.d/init-labirinto.sh
+
+# Flag de teste
+ARG TESTE
+ENV TESTE=${TESTE:-false}
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

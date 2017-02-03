@@ -11,8 +11,8 @@ services:
 - docker
 
 before_install:
-- docker build -t gilzoide/labirinto docker/
-- docker run gilzoide/labirinto /bin/bash -c "pip install -r test-requirements.txt; mongod --dbpath /db &; nosetests"
+- docker build -t gilzoide/labirinto:teste  --build-arg TESTE=true docker/
+- docker run gilzoide/labirinto:teste /bin/bash -c "pip install -r test-requirements.txt; mongod --dbpath /db &; nosetests"
 
 install:
 - 'pip install -r requirements.txt'

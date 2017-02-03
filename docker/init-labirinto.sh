@@ -1,7 +1,12 @@
 #!/bin/sh
 
-mongod --dbpath /db &
+service mongodb start
 
-python run.py
+if [ $TESTE = "false" ]; then
+	python run.py
+else
+	pip install -r test-requirements.txt
+	nosetests
+fi
 
 exit
