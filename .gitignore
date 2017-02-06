@@ -8,6 +8,10 @@ venv/
 # Arquivos do pycharm
 .idea/
 
+# Builds
+build/
+*.egg-info/
+
 # Cache do python
 *.pyc
 __pycache__/

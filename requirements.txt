@@ -1,7 +1,1 @@
-# Pacotes para execucao
-flask
-flask-mongoengine
-PyYAML
-Flask-Security
-Flask-Bootstrap
-Flask-Admin
+-e .
