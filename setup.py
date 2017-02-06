@@ -8,7 +8,7 @@ with open('README.rst', 'r') as readme_file:
 
 setup(
     name='labirinto-flask',
-    version='0.1.0',
+    version='0.1.1',
     author='gilzoide',
     author_email='gilzoide@gmail.com',
     description='Joguinho de labirinto usando Flask + GTM',
