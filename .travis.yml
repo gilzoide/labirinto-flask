@@ -1,6 +1,6 @@
 language: python
 python:
-- "2.7"
+- '2.7'
 
 sudo: required
 
@@ -10,11 +10,19 @@ services:
 - mongodb
 - docker
 
-install:
-- 'pip install -r requirements.txt'
-- 'pip install -r test-requirements.txt'
-- 'docker build -t gilzoide/labirinto:teste  --build-arg TESTE=true docker/'
+deploy:
+  provider: pypi
+  user: gilzoide
+  password:
+    secure: XpGCcKJ6TBsg2pX8REQ1/jwZkcxQyzOwZdzJohomQCnUdKOiuRldh3cnq2DUfzT+CNkbKqaCqfRVkjnx2LA0rPlLXOR4NCkCsAV61P2epWXz3xfNHyLreBNPA7EoB7eu6wAArYU/ZBRX2ewgCclPz2PM7fWXR5265i0sNqefEhfLeqMjtZVvQVNlljAFKAy4sxVzQ2u3hzfo+xwyfmh+lgl/wS7Upn5kSPdsBmM5yP79r6sXEKl0bV/3TzJQEp6OrOdDo1aqFlEr9KdXw8/jw2FVMZE9kmPSphY7RXE62WoHxcKKz0ztC+LpBHqLbK4SCk/ATJDjTcqBZZoEoRfxtF6RDtTV53aUa66OAYhiZP9Wm83FjE32DfX4X9ppE9t2WwJd2jyTVjpnuR9t6YChqVNxii8jK1T31eKb3geULuLLQhGjwu7jktkhLsAmc5x/PRGPAPigNu6dOhGNYIq1bwaefPAoqTNj0RqApMf0a8A2ESLvv4j/NAWOiPqQbtEAPqeAP9P4PfNx+ZVGufbiiTEhyGDxXo59eriAkuF/TCxiZa8YxfryKWhO2IbowazRTo1VAIbHxRLpDCrfJm+N7OQIybXAe7YcTEF4rWG+k51muTNJUDWhb2dS4yi+yZO+PXf7carAp9UNCKjkSQszkUzu2y3MT+LS9UcZKkNVj3s=
+  on:
+    tags: true
 
-script: 
-- 'docker run gilzoide/labirinto:teste /sbin/my_init -- nosetests'
-- 'nosetests'
+install:
+- pip install -r requirements.txt
+- pip install -r test-requirements.txt
+- docker build -t gilzoide/labirinto:teste  --build-arg TESTE=true docker/
+
+script:
+- docker run gilzoide/labirinto:teste /sbin/my_init -- nosetests
+- nosetests
