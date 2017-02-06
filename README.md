@@ -28,5 +28,20 @@ Instale as dependências (opcionalmente usando um [virtualenv](https://virtualen
 
 E rode:
 
-    $ nosetests -v
+    $ nosetests
+
+
+Docker
+------
+Há configuração para criar um container do [Docker](https://www.docker.com/)
+prontim pra rodar os bang.  Para criar a imagem, opcionalmente instalando os
+pacotes de teste automatizado:
+
+    $ docker build -t <NomeDaImagem> [--build-arg TESTE=true] docker/
+
+Para rodar o programa, ou os testes, substitua `OPTIONS` pelas opções do
+[docker run](https://docs.docker.com/engine/reference/run/) e `COMANDO` por um
+dos comandos citados acima:
+
+    $ docker run OPTIONS <MesmoNomeDaImagem> /sbin/my_init -- COMANDO
 

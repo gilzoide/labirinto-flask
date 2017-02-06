@@ -17,4 +17,4 @@ install:
 
 script: 
 - 'docker run gilzoide/labirinto:teste /sbin/my_init -- nosetests'
-- 'nosetests -v'
+- 'nosetests'
