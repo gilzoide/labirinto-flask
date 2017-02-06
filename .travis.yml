@@ -10,12 +10,11 @@ services:
 - mongodb
 - docker
 
-before_install:
-- docker build -t gilzoide/labirinto:teste  --build-arg TESTE=true docker/
-- docker run gilzoide/labirinto:teste /etc/my_init.d/init-labirinto.sh
-
 install:
 - 'pip install -r requirements.txt'
 - 'pip install -r test-requirements.txt'
+- 'docker build -t gilzoide/labirinto:teste  --build-arg ACTION=teste docker/'
 
-script: 'nosetests -v'
+script: 
+- 'docker run gilzoide/labirinto:teste /sbin/my_init -- nosetests'
+- 'nosetests -v'

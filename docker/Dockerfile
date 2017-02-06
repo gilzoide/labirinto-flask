@@ -6,9 +6,9 @@ CMD ["/sbin/my_init"]
 
 # Instala os rolê
 RUN apt-get -y update && apt-get -y install \
-	python python-pip \
 	git \
-	mongodb
+	mongodb \
+	python python-pip
 
 # Arruma o timezone e locale
 ENV TZ=America/Sao_Paulo
@@ -28,14 +28,14 @@ RUN git clone --depth 1 https://github.com/gilzoide/labirinto-flask.git app
 WORKDIR app
 RUN pip install -r requirements.txt
 
-# E setta a inicialização
-RUN mkdir -p /etc/my_init.d
-ADD init-labirinto.sh /etc/my_init.d/
-RUN chmod +x /etc/my_init.d/init-labirinto.sh
-
 # Flag de teste
 ARG TESTE
-ENV TESTE=${TESTE:-false}
+RUN if [ $TESTE = "true" ]; then pip install -r test-requirements.txt; fi
+
+# E setta a inicialização
+RUN mkdir -p /etc/my_init.d
+COPY *.sh /etc/my_init.d/
+RUN chmod +x /etc/my_init.d/*.sh
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

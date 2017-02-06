@@ -67,3 +67,6 @@ class SalasTest(unittest.TestCase):
         inicio = salas[0].porta_proxima('Inicio')
         self.assertEqual(inicio, '')
         self.assertIsNotNone(inicio)
+
+        # um teste que não passa, só pra testar
+        self.assertIsNone(3)
