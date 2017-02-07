@@ -3,6 +3,9 @@ Labirinto Flask
 .. image:: https://travis-ci.org/gilzoide/labirinto-flask.svg?branch=master
     :target: https://travis-ci.org/gilzoide/labirinto-flask
 
+.. image:: https://coveralls.io/repos/github/gilzoide/labirinto-flask/badge.svg?branch=master
+    :target: https://coveralls.io/github/gilzoide/labirinto-flask?branch=master
+
 Joguinho de labirinto, feito em web usando Flask como servidor, e GTM para tags.
 
 Isso é só um teste das tecnologias.
